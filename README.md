@@ -6,7 +6,7 @@ The Bike Servicing Management API is a backend system designed to handle custome
 
 ---
 
-### 💻 Live Deployment
+## 💻 Live Deployment
 
 You can access the live API at: [Your Live API Link Here]
 
@@ -40,33 +40,43 @@ git clone https://github.com/Th3At0nic/Bike-Servicing-Management-API.git
 cd Bike-Servicing-Management-API
 ```
 
-### 2. Install Dependencies
+## 2. Install Dependencies
 
-bash
-Copy
-Edit
+```bash
 npm install
+```
 
 ### 3. Configure the Database
 
 Ensure that PostgreSQL is installed and running on your machine. Then, create a .env file in the root of the project and add your database connection string:
 
+```ini
+
+DATABASE_URL="postgresql://username:password@localhost:5432/bike_servicing_db?schema=public"
+
 ```
-DATABASE_URL="postgresql://username:password@localhost:5432/bike_servicing_db?schema=public" 4. Apply Database Migrations
+
+### 4. Apply Database Migrations
+
 Use Prisma to set up the database schema:
-```
 
 ```bash
-npx prisma migrate dev --name init 5. Start the Server
+
+npx prisma migrate dev --name init
+
 ```
 
+### 5. Start the Server
+
 ```bash
+
 npm run dev
+
 ```
 
 Your API should now be running at http://localhost:5000.
 
-### 📡 API Endpoints
+## 📡 API Endpoints
 
 Here are the key API routes available in the Bike Servicing Management System.
 
@@ -103,7 +113,7 @@ PUT /api/services/{serviceId}/complete – Mark a service as completed.
 Pending or Overdue Services
 GET /api/services/status – Fetch services that are pending or overdue (older than 7 days).
 
-### ✨ Key Features
+## ✨ Key Features
 
 Complete CRUD operations for customers, motorcycles, and service records.
 
