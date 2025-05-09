@@ -18,8 +18,8 @@ const updateCustomerIntoDb = async (customerId: string, payload: any) => {
   return prisma.customer.update({ where: { customerId }, data: payload });
 };
 
-const deleteCustomerFromDb = async (id: string) => {
-  return prisma.customer.delete({ where: { id } });
+const deleteCustomerFromDb = async (customerId: string) => {
+  return prisma.customer.delete({ where: { customerId } });
 };
 
 export const CustomerServices = {
