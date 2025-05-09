@@ -24,13 +24,15 @@ const getCustomerById = async (req: Request, res: Response) => {
 const updateCustomer = async (req: Request, res: Response) => {
   const { id } = req.params;
   const result = await CustomerServices.updateCustomerIntoDb(id, req.body);
-  res.status(200).json({ success: true, data: result });
+  const message = "Customer Updated successfully";
+  sendResponse(res, 200, true, message, result);
 };
 
 const deleteCustomer = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const result = await CustomerServices.deleteCustomerFromDb(id);
-  res.status(200).json({ success: true, data: result });
+  await CustomerServices.deleteCustomerFromDb(id);
+  const message = "Customer Deleted successfully";
+  sendResponse(res, 200, true, message);
 };
 
 export const CustomerController = {
