@@ -40,7 +40,6 @@ const getAllBikesFromDB = async (): Promise<Bike[]> => {
 
 /**
  * Fetches a single bike from the database by its ID.
- *
  * @param bikeId - The ID of the bike to be fetched.
  *
  * @throws {NotFoundError} If the bike with the provided ID does not exist.
