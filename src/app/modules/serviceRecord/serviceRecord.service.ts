@@ -1,6 +1,7 @@
 import { ServiceRecord, PrismaClient, ServiceStatus } from "@prisma/client";
 import throwAppError from "../../utils/throwAppError";
 import { StatusCodes } from "http-status-codes";
+import { toPrismaEnum } from "../../utils/mapToPrismaEnum";
 
 const prisma = new PrismaClient();
 
@@ -17,12 +18,15 @@ const createServiceIntoDB = async (
 ): Promise<ServiceRecord> => {
   const { bikeId, serviceDate, description, status } = payload;
   //   console.log({ bikeId, serviceDate, description, status });
+
+  const normalizedStatus = toPrismaEnum(ServiceStatus, status);
+
   const result = await prisma.serviceRecord.create({
     data: {
       bikeId,
       serviceDate,
       description,
-      status,
+      status: normalizedStatus,
     },
   });
 
