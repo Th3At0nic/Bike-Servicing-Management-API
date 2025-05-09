@@ -10,8 +10,8 @@ const getAllCustomersFromDb = async () => {
   return prisma.customer.findMany();
 };
 
-const getCustomerByIdFromDB = async (id: string) => {
-  return prisma.customer.findUnique({ where: { id } });
+const getCustomerByIdFromDB = async (customerId: string) => {
+  return prisma.customer.findUnique({ where: { customerId } });
 };
 
 const updateCustomerIntoDb = async (id: string, payload: any) => {
