@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { CustomerRoutes } from "../modules/customer/customer.route";
 import { BikeRoutes } from "../modules/bike/bike.route";
+import { ServiceRecordRoutes } from "../modules/serviceRecord/serviceRecord.route";
 
 const router = Router();
 
@@ -14,6 +15,10 @@ const moduleRoutes = [
   {
     path: `${apiPrefix}/bikes`,
     route: BikeRoutes,
+  },
+  {
+    path: `${apiPrefix}/services`,
+    route: ServiceRecordRoutes,
   },
 ];
 

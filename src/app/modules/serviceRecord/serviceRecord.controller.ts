@@ -39,9 +39,9 @@ const completeServiceRecord = catchAsync(async (req, res) => {
 });
 
 export const ServiceControllers = {
-  createOne: createService,
-  getAll: getAllServices,
-  getOne: getOneService,
+  createService,
+  getAllServices,
+  getOneService,
   completeServiceRecord,
   getPendingOrOverdueServices,
 };
