@@ -10,7 +10,8 @@ const createCustomer = async (req: Request, res: Response) => {
 
 const getAllCustomers = async (req: Request, res: Response) => {
   const result = await CustomerServices.getAllCustomersFromDb();
-  res.status(200).json({ success: true, data: result });
+  const message = "Customers fetched successfully";
+  sendResponse(res, 200, true, message, result);
 };
 
 const getCustomerById = async (req: Request, res: Response) => {
