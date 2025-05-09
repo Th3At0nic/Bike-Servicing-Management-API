@@ -17,7 +17,8 @@ const getAllCustomers = async (req: Request, res: Response) => {
 const getCustomerById = async (req: Request, res: Response) => {
   const { id } = req.params;
   const result = await CustomerServices.getCustomerByIdFromDB(id);
-  res.status(200).json({ success: true, data: result });
+  const message = "Customer fetched successfully";
+  sendResponse(res, 200, true, message, result);
 };
 
 const updateCustomer = async (req: Request, res: Response) => {
