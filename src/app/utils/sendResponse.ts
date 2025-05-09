@@ -1,4 +1,4 @@
-import { Response } from 'express';
+import { Response } from "express";
 
 type TMeta = {
   page: number;
@@ -12,8 +12,8 @@ const sendResponse = <T>(
   statusCode: number,
   success: boolean,
   message: string,
-  data: T,
-  meta?: TMeta,
+  data?: T,
+  meta?: TMeta
 ) => {
   res.status(statusCode).json({
     success: success,
