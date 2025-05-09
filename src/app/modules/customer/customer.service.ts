@@ -14,8 +14,8 @@ const getCustomerByIdFromDB = async (customerId: string) => {
   return prisma.customer.findUnique({ where: { customerId } });
 };
 
-const updateCustomerIntoDb = async (id: string, payload: any) => {
-  return prisma.customer.update({ where: { id }, data: payload });
+const updateCustomerIntoDb = async (customerId: string, payload: any) => {
+  return prisma.customer.update({ where: { customerId }, data: payload });
 };
 
 const deleteCustomerFromDb = async (id: string) => {
