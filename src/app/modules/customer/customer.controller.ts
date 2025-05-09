@@ -1,9 +1,11 @@
 import { Request, Response } from "express";
 import { CustomerServices } from "./customer.service";
+import sendResponse from "../../utils/sendResponse";
 
 const createCustomer = async (req: Request, res: Response) => {
   const result = await CustomerServices.createCustomerIntoDb(req.body);
-  res.status(201).json({ success: true, data: result });
+  const message = "Customer created successfully";
+  sendResponse(res, 201, true, message, result);
 };
 
 const getAllCustomers = async (req: Request, res: Response) => {
