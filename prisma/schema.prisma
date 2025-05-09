@@ -34,12 +34,18 @@ model Bike {
   ServiceRecord ServiceRecord[]
 }
 
+enum ServiceStatus {
+  PENDING
+  IN_PROGRESS
+  DONE
+}
+
 model ServiceRecord {
-  serviceId      String    @id @default(uuid())
-  bike           Bike      @relation(fields: [bikeId], references: [bikeId])
+  serviceId      String        @id @default(uuid())
+  bike           Bike          @relation(fields: [bikeId], references: [bikeId])
   bikeId         String
   serviceDate    DateTime
   completionDate DateTime?
   description    String
-  status         String
+  status         ServiceStatus
 }
