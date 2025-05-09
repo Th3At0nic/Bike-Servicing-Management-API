@@ -56,41 +56,6 @@ const getAllServicesFromDB = async (): Promise<ServiceRecord[]> => {
 };
 
 /**
- * Fetches all service records from the database that are either pending,
- * in progress, or overdue (i.e. service date is older than one week ago).
- *
- * @returns An array of service records.
- */
-const getPendingOrOverdueServicesFromDB = async (): Promise<
-  ServiceRecord[]
-> => {
-  const oneWeekAgo = new Date();
-  oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-
-  const result = await prisma.serviceRecord.findMany({
-    where: {
-      AND: [
-        {
-          OR: [
-            { status: { in: ["PENDING", "IN_PROGRESS"] } },
-            { serviceDate: { lt: oneWeekAgo } },
-          ],
-        },
-        {
-          status: { not: "DONE" },
-        },
-      ],
-    },
-  });
-
-  if (!result) {
-    throwAppError("", "No Data Found", StatusCodes.NOT_FOUND);
-  }
-
-  return result;
-};
-
-/**
  * Fetches a single service record from the database by its ID.
  *
  * @param serviceId - The ID of the service record to be fetched.
@@ -108,7 +73,7 @@ const getOneServiceFromDB = async (
   if (!result) {
     throwAppError(
       "serviceId",
-      "Service not found with the id",
+      "Service not found with the id hahaha",
       StatusCodes.NOT_FOUND
     );
   }
@@ -167,6 +132,43 @@ const completeServiceRecordIntoDB = async (
       "Couldn't Update the Service Record. Something went wrong. Try again",
       StatusCodes.INTERNAL_SERVER_ERROR
     );
+  }
+
+  return result;
+};
+
+/**
+ * Fetches all service records from the database that are either pending,
+ * in progress, or overdue (i.e. service date is older than one week ago).
+ *
+ * @returns An array of service records.
+ */
+const getPendingOrOverdueServicesFromDB = async (): Promise<
+  ServiceRecord[]
+> => {
+  const oneWeekAgo = new Date();
+  oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+
+  const result = await prisma.serviceRecord.findMany({
+    where: {
+      AND: [
+        {
+          OR: [
+            { status: { in: ["PENDING", "IN_PROGRESS"] } },
+            { serviceDate: { lt: oneWeekAgo } },
+          ],
+        },
+        {
+          status: { not: "DONE" },
+        },
+      ],
+    },
+  });
+
+  console.log("result: ", result);
+
+  if (!result.length) {
+    throwAppError("", "No Data Found", StatusCodes.NOT_FOUND);
   }
 
   return result;

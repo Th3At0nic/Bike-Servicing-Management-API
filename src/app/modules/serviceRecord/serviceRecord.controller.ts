@@ -15,14 +15,6 @@ const getAllServices = catchAsync(async (req, res) => {
   sendResponse(res, StatusCodes.OK, true, message, result);
 });
 
-const getPendingOrOverdueServices = catchAsync(async (_, res) => {
-  const result =
-    await ServiceRecordServices.getPendingOrOverdueServicesFromDB();
-
-  const message = "Overdue or pending services fetched successfully";
-  sendResponse(res, StatusCodes.OK, true, message, result);
-});
-
 const getOneService = catchAsync(async (req, res) => {
   const result = await ServiceRecordServices.getOneServiceFromDB(req.params.id);
   const message = "Service record fetched successfully";
@@ -35,6 +27,15 @@ const completeServiceRecord = catchAsync(async (req, res) => {
     req.body
   );
   const message = "Service marked as completed";
+  sendResponse(res, StatusCodes.OK, true, message, result);
+});
+
+const getPendingOrOverdueServices = catchAsync(async (req, res) => {
+  console.log("click porse: ");
+  const result =
+    await ServiceRecordServices.getPendingOrOverdueServicesFromDB();
+
+  const message = "Overdue or pending services fetched successfully";
   sendResponse(res, StatusCodes.OK, true, message, result);
 });
 
