@@ -6,8 +6,6 @@ import { ZodError } from "zod";
 import { TErrorSource } from "../interface/error";
 import config from "../config";
 import { handleZodError } from "../error/handleZodError";
-import { handleMongooseError } from "../error/handleMongooseError";
-import { handleCastError } from "../error/handleCastError";
 import { handleDuplicateError } from "../error/handleDuplicateError";
 
 export const globalErrorHandler: ErrorRequestHandler = (
@@ -25,16 +23,6 @@ export const globalErrorHandler: ErrorRequestHandler = (
 
   if (err instanceof ZodError) {
     const simplifiedError = handleZodError(err);
-    statusCode = simplifiedError.statusCode;
-    message = simplifiedError.message;
-    errorSource = simplifiedError.errorSource;
-  } else if (err.name === "ValidationError") {
-    const simplifiedError = handleMongooseError(err);
-    statusCode = simplifiedError.statusCode;
-    message = simplifiedError.message;
-    errorSource = simplifiedError.errorSource;
-  } else if (err.name === "CastError") {
-    const simplifiedError = handleCastError(err);
     statusCode = simplifiedError.statusCode;
     message = simplifiedError.message;
     errorSource = simplifiedError.errorSource;

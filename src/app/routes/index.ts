@@ -5,19 +5,17 @@ import { ServiceRecordRoutes } from "../modules/serviceRecord/serviceRecord.rout
 
 const router = Router();
 
-const apiPrefix = "/api";
-
 const moduleRoutes = [
   {
-    path: `${apiPrefix}/customers`,
+    path: `/customers`,
     route: CustomerRoutes,
   },
   {
-    path: `${apiPrefix}/bikes`,
+    path: `/bikes`,
     route: BikeRoutes,
   },
   {
-    path: `${apiPrefix}/services`,
+    path: `/services`,
     route: ServiceRecordRoutes,
   },
 ];
